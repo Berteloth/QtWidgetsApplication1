@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Song.h"
 #include <QMainWindow>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -7,7 +7,10 @@
 #include <QLineEdit>
 #include <QFormLayout>
 #include <QPushButton>
+#include <QMessageBox>
+#include <QListWidget>
 
+class Song;
 class MainWindow : public QMainWindow
 
 {
@@ -17,13 +20,23 @@ public:
     MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
     void setGeo();
+public slots:
+    void onAddButton();
+    void onUpdateButton();
+    void onFilterButton();
+    void onDeleteButton();
+    void onMiddleButton();
 private:
     void setupUI();
+
+
 
     QHBoxLayout* m_mainLayout;
     QHBoxLayout* m_buttonsLayout1;
     QHBoxLayout* m_buttonsLayout2;
 
+    std::vector<Song> m_songList;
+    std::vector<Song> m_songPlayList;
 
     QWidget* m_centralWidget;
     QVBoxLayout* m_leftVLayout;
@@ -43,7 +56,9 @@ private:
     QLineEdit* m_linkText;
 
     QLabel* m_listSongsLabel;
-    QTextEdit* m_listSongs;
+    //QTextEdit* m_listSongs;
+    QListWidget* m_listSongs;
+
 
     QPushButton* m_add;
     QPushButton* m_delete;
@@ -63,7 +78,7 @@ private:
     
     //form layout
     QLabel* m_listPlaylistLabel;
-    QTextEdit* m_listPlaylist;
+    QListWidget* m_listPlaylist;
 
     QPushButton* m_play;
     QPushButton* m_next;
